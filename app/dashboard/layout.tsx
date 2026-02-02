@@ -2,22 +2,23 @@ import React from "react";
 import TopBar from "../component/topBar";
 import Sidebar from "../component/sidebar";
 import NavBar from "../component/navBar";
-import { MdHome } from "react-icons/md";
+import Menu from "../ui/menu";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 
-    const items = [
-        { name: 'Home', href: '/dashboard', icon: 'MdHome' },
-        { name: 'Customers', href: '/dashboard/customers', icon: 'MdHome' },
-        { name: 'Invoices', href: '/dashboard/invoices', icon: 'MdHome' }
-    ]
+
+  const items = [
+    { title: 'Dashboard', href: '/dashboard'},
+    { title: 'Setting', href: '/setting'},
+    { title: 'Login', href: '/login'}
+  ]
 
     return (
-        <div className="flex flex-col h-screen overflow-hidden">
-            <TopBar />
-            <div className="flex flex-col md:flex-row 500 flex-1">
-                <Sidebar items={items} className="hidden md:flex" />
-                <div className="w-full h-full p-4">
+        <div className="flex gap-2.5 h-screen overflow-hidden p-2 md:p-4">
+            <Sidebar className="hidden md:flex" />
+            <div className="flex gap-2.5 flex-col flex-1">
+                <TopBar />
+                <div className="bg-theme rounded-md w-full h-full px-2 py-4 md:p-4">
                     {children}
                 </div>
                 <NavBar />

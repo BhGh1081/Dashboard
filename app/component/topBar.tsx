@@ -1,41 +1,50 @@
 'use client'
 
-import Image from "next/image";
-import { poppins } from "../ui/font";
-import Link from "next/link";
+import { MdDashboard } from "react-icons/md";
 import Toggle from "../ui/toggle";
 import { BiSolidUserCircle } from "react-icons/bi";
-import { useState } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
+import { BellAlertIcon, Bars4Icon } from "@heroicons/react/24/solid";
+import { usePathname } from "next/navigation";
 
 
-export default function TopBar() {
+export default function TopBar({ children }: { children?: React.ReactNode }) {
 
     const [profile, setProfile] = useState(false);
+    const pathname = usePathname();
+    const title = (pathname.split('/'));
 
     return (
-        <div className="relative h-[80px] w-full flex items-center justify-between p-2 shadow-sm shadow-black/20">
+        <div className="bg-theme relative h-[80px] w-full flex items-center justify-between rounded-md p-2">
             <div className="flex items-center">
-                <Image src={'dashboard_icon.svg'} alt="Dashboard Icon" width={60} height={60} />
-                <strong className={`${poppins.className} font-poppins text-[1.5rem] font-extrabold`}>Dashboard</strong>
-            </div>
-            <div className="relative">
-                <BiSolidUserCircle onClick={() => setProfile(!profile)} className="w-15 h-15" />
-                <div
-                    onMouseLeave={() => setProfile(false)}
-                    className={clsx("bg-modal shadow-md w-50 absolute space-y-6 justify-start px-6 rounded top-15 right-0 transition-all duation-500 ease-in-out", !profile ? 'h-0' : 'h-45 py-2')}>
-                    {profile &&
-                        <>
-                            <div className="border-b-solid border-b-1 border-b-gray-300 py-4">
-                                <p>Petter John</p>
-                                <p className="text-[.8rem] text-gray-400">Admin</p>
-                            </div>
-                        </>
-                    }
+                <div className="md:hidden">
+                    <MdDashboard className="w-15 h-15 text-primary" />
                 </div>
+                <strong className= 'font-poppins text-[1.3rem] font-bold'>{title[title.length-1].toLocaleUpperCase()}</strong>
             </div>
-            <div className="absolute right-25 top-1/2 -translate-y-1/2">
+            {children}
+            <div className="sm:hidden">
+                <Bars4Icon className="w-10 h-10" />
+            </div>
+            <div className="hidden sm:flex gap-2">
                 <Toggle />
+                <div className="flex w-14 h-14 justify-center items-center border-solid border-1 border-gray-400 rounded-lg">
+                    <BellAlertIcon className="w-8 h-8" />
+                </div>
+                <div className="relative z-10 border-solid border-1 border-gray-400 rounded-lg p-1" onMouseLeave={() => setProfile(false)}>
+                    <BiSolidUserCircle
+                        onClick={() => setProfile(!profile)}
+                        className="w-12 h-12" />
+                    <div className={clsx("w-0 h-0 absolute top-12 right-5 border-transparent border-t-solid border-t-10 border-r-solid border-r-10 border-b-solid border-b-10 border-b-modal border-l-solid border-l-10 transition-all duration-400 ease-in-out", !profile ? 'opacity-1' : 'opacity-100')}>
+                    </div>
+                    <div className={clsx("bg-modal h-45 shadow-md w-50 absolute space-y-6 justify-start px-6 py-4 rounded-lg top-21 right-0 transition-all duration-400 ease-in-out", !profile ? 'translate-0 opacity-0' : '-translate-y-5 opacity-100')}>
+                        <div className="border-b-solid border-b-1 border-b-gray-300 py-4">
+                            <p>Petter John</p>
+                            <p className="text-[.8rem] text-gray-400">Admin</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

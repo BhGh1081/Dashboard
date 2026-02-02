@@ -1,24 +1,27 @@
 
 import Image from "next/image";
-import Sidebar from "./component/sidebar";
-import { MdHome } from "react-icons/md";
+import TopBar from "./component/topBar";
 import Toggle from "./ui/toggle";
+import '@/public/dashboard_icon.svg'
+import Menu from "./ui/menu";
+import { MdDashboard } from "react-icons/md";
 
 export default function Home() {
 
-      const items = [
-        {name: 'Dashboard', href: '/dashboard', icon: 'MdHome'},
-        {name: 'Setting', href: '/setting', icon: 'MdHome'},
-        {name: 'Login', href: '/login', icon: 'MdHome'}
-    ]
+  const items = [
+    { title: 'Dashboard', href: '/dashboard' },
+    { title: 'Setting', href: '/setting' },
+    { title: 'Login', href: '/login' }
+  ]
 
   return (
-    <div className="flex flex-col md:flex-row h-screen ">
-      
-      <Sidebar items={items} />
-      <Toggle />
+    <div className="flex flex-col h-screen">
+
+      <TopBar>
+        <Menu items={items} />
+      </TopBar>
       <div className="flex flex-1 justify-center items-center">
-        <Image src={'dashboard_icon.svg'} width={100} height={100} alt="icon" className="opacity-50"/>
+        <MdDashboard className="w-50 h-50 text-primary/30" />
       </div>
     </div>
   );

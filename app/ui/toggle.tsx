@@ -26,11 +26,11 @@ export default function Toggle({className} : {className?: string}) {
 
 
     return (
-        <div>
+        <div className="w-14 h-14 flex justify-center items-center border-solid border-1 border-gray-400 rounded-lg">
             <MdDarkMode onClick={() => setDark(true)}
-                className={clsx("w-10 h-10 text-sky-700 active:scale-90 transition-transform duration-100", dark && 'hidden' )} />
+                className={clsx("w-9 h-9 text-sky-700 active:scale-90 transition-transform duration-100", dark && 'hidden' )} />
             <MdLightMode onClick={() => setDark(false)}
-                className={clsx("w-10 h-10 text-yellow-400 active:scale-90 transition-transform duration-100", !dark && 'hidden')} />
+                className={clsx("w-9 h-9 text-yellow-400 active:scale-90 transition-transform duration-100", !dark && 'hidden')} />
         </div>
     )
 }
