@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <Sidebar className="hidden md:flex" />
             <div className="flex gap-2.5 flex-col flex-1">
                 <TopBar />
-                <div className="bg-theme rounded-md w-full h-full px-2 py-4 md:p-4">
+                <div className="bg-background rounded-md w-full h-full px-2 py-4 md:p-4">
                     {children}
                 </div>
                 <NavBar />

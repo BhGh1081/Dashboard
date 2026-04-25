@@ -20,12 +20,12 @@ export default function Sidebar({ className }: { className?: string }) {
     ]
 
     return (
-        <div className={`bg-theme flex md:flex-col  rounded-lg md:w-[12%] lg:w-[20%] ${className}`}>
+        <div className={`bg-background flex md:flex-col  rounded-lg md:w-[12%] lg:w-[20%]  ${className}`}>
 
-            <div className="h-[75px] flex justify-center lg:justify-start items-center rounded-md px-1 mb-1">
+            <Link href={'./'} className="h-[5rem] flex justify-center lg:justify-start items-center rounded-md px-1 mb-1">
                 <MdDashboard className="w-15 h-15 text-primary" />
                 <strong className={`${poppins.className} font-poppins text-[1.5rem] font-extrabold hidden lg:block`}>Pasta</strong>
-            </div>
+            </Link>
             <section className="mb-10">
                 <h2 className="text-gray-400 text-[0.9rem] px-2 text-center lg:text-start">Menu</h2>
                 {items.map((item, index) => {
